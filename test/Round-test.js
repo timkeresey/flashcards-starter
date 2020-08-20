@@ -62,5 +62,12 @@ describe('Round', function() {
     round.takeTurn('gallbladder');
 
     expect(round.calculatePercentCorrect()).to.equal(50);
+  });
+
+  it('should print end round message to console', function() {
+    round.takeTurn('pug');
+    round.takeTurn('gallbladder');
+
+    expect(round.endRound()).to.equal('** Round over! ** You answered 50% of the questions correctly!');
   })
 });
