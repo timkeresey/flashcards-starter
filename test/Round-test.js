@@ -7,24 +7,45 @@ const Card = require('../src/Card');
 const Turn = require('../src/Turn');
 
 describe('Round', function() {
-
-  it('should be a function', function() {
-    const round = new Round();
-    expect(Round).to.be.a('function');
-  });
-
-  it('should be an instance of Round', function() {
-    const round = new Round();
-    expect(round).to.be.an.instanceof(Round);
+  let card1;
+  let card2;
+  let card3;
+  let deck;
+  let round;
+  beforeEach((done) => {
+    card1 = new Card(1, 'What is Robbie\'s favorite animal', ['sea otter', 'pug', 'capybara'], 'sea otter');
+    card2 = new Card(14, 'What organ is Khalid missing?', ['spleen', 'appendix', 'gallbladder'], 'gallbladder');
+    card3 = new Card(12, 'What is Travis\'s favorite stress reliever?', ['listening to music', 'watching Netflix', 'playing with bubble wrap'], 'playing with bubble wrap');
+    deck = new Deck([card1, card2, card3]);
+    round = new Round(deck);
+    done();
   });
 
   it('should return the current card being played', function() {
-    const card1 = new Card(1, 'What is Robbie\'s favorite animal', ['sea otter', 'pug', 'capybara'], 'sea otter');
-    const card2 = new Card(14, 'What organ is Khalid missing?', ['spleen', 'appendix', 'gallbladder'], 'gallbladder');
-    const card3 = new Card(12, 'What is Travis\'s favorite stress reliever?', ['listening to music', 'watching Netflix', 'playing with bubble wrap'], 'playing with bubble wrap');
-    const deck = new Deck([card1, card2, card3]);
-    const round = new Round(deck);
+    expect(round.returnCurrentCard()).to.deep.equal({ id: 1, question: 'What is Robbie\'s favorite animal', answers: ['sea otter', 'pug', 'capybara'], correctAnswer: 'sea otter'})
+  });
 
-    expect(round.returnCurrentCard()).to.equal({ id: 1, question: 'What is Robbie\'s favorite animal', answers: ['sea otter', 'pug', 'capybara'], correctAnswer: 'sea otter'})
+  it('should instantiate a new Turn', function() {
+    round.takeTurn();
+
+    expect(round.turn[0]).to.be.an.instanceof(Turn);
+  });
+
+  it('should update the turns count', function() {
+    round.takeTurn('pug');
+
+    expect(round.turns).to.equal(1);
+  });
+
+  it('should evaluate guesses', function() {
+    round.takeTurn('pug');
+
+    expect(round.turn[0].evaluateGuess()).to.equal(false);
+  });
+
+  it('should store incorrect guesses by id', function() {
+    round.takeTurn('pug');
+
+    expect(round.incorrectGuesses[0]).to.equal(1)
   })
 });

@@ -1,14 +1,25 @@
 const data = require('./data');
 const prototypeQuestions = data.prototypeData;
 const util = require('./util');
+const Turn = require('./Turn');
 
 class Round {
   constructor(deck) {
-    this.deck = deck;
-    this.currentCard = deck.cards[0]
+    this.deck = deck.cards;
+    this.turns = 0;
+    this.turn = [];
+    this.incorrectGuesses = [];
   }
   returnCurrentCard() {
-    return this.currentCard;
+    return this.deck[this.turns];
+  }
+  takeTurn(guess) {
+    let currentTurn = new Turn(guess, this.returnCurrentCard());
+    this.turns++;
+    this.turn.push(currentTurn);
+    if (currentTurn.evaluateGuess() === false) {
+      this.incorrectGuesses.push(currentTurn.card.id);
+    }
   }
 }
 
