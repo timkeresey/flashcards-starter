@@ -47,5 +47,13 @@ describe('Round', function() {
     round.takeTurn('pug');
 
     expect(round.incorrectGuesses[0]).to.equal(1)
-  })
+  });
+
+  it('should return a message of incorrect! if guess is incorrect', function() {
+    expect(round.takeTurn('pug')).to.equal('incorrect!')
+  });
+
+  it('should return a message of correct! if guess is correct', function() {
+    expect(round.takeTurn('sea otter')).to.equal('correct!')
+  });
 });
