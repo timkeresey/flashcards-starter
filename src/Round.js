@@ -24,6 +24,10 @@ class Round {
       return 'correct!';
     }
   }
+  calculatePercentCorrect() {
+    let percentIncorrect = (this.incorrectGuesses.length / this.turn.length) * 100;
+    return 100 - percentIncorrect;
+  }
 }
 
 

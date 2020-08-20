@@ -56,4 +56,11 @@ describe('Round', function() {
   it('should return a message of correct! if guess is correct', function() {
     expect(round.takeTurn('sea otter')).to.equal('correct!')
   });
+
+  it('should calculate the percent of guesses that are correct', function() {
+    round.takeTurn('pug');
+    round.takeTurn('gallbladder');
+
+    expect(round.calculatePercentCorrect()).to.equal(50);
+  })
 });
