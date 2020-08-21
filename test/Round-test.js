@@ -69,5 +69,5 @@ describe('Round', function() {
     round.takeTurn('gallbladder');
 
     expect(round.endRound()).to.equal('** Round over! ** You answered 50% of the questions correctly!');
-  })
+  });
 });
