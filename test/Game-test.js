@@ -15,11 +15,15 @@ describe('Game', function() {
     expect(game.start()[0]).to.be.an.instanceof(Card)
   });
 
-  it('should create a deck', function() {
-    let game = new Game();
+  // it('should create a deck with instantiated cards', function() {
+  //   let game = new Game();
+  //   game.start();
+  //
+  //   expect(this.currentRound.deck.cards).to.equal(1);
+  // });
 
-    
-  });
-
-
+  // it('should create a round with the instantiated deck', function() {
+  //   let game = new Game();
+  //
+  // })
 });
