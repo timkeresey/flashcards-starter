@@ -13,9 +13,5 @@
   - Fork the repo to local repository.
   - Clone down the repo.
   - Open the repo in text editor.
-  - Use the command:
-  ```
-  node index.js
-  ```
-    to start the game.
+  - Use the command: `node index.js` to start the game.
   - Use numbers or arrow keys to select answers.
