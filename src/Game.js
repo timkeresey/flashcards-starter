@@ -19,7 +19,6 @@ class Game {
         card['correctAnswer']
     ));
     const deck = new Deck(cardList);
-    console.log(deck);
     this.currentRound = new Round(deck);
     this.printMessage(deck, this.currentRound);
     this.printQuestion(this.currentRound);
